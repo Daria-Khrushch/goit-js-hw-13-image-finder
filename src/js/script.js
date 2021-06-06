@@ -47,14 +47,14 @@ function fetchCards() {
     scrollPage();
     loadMoreBtn.enable();
 
-    if (cards.length === 0) {
+    if (cards.length <12) {
       loadMoreBtn.hide();
       noMatchesFound();
     }
   });
 }
 
-function onLoadMore() {
+function onLoadMore(e) {
   fetchCards();
 }
 
@@ -81,15 +81,8 @@ function noMatchesFound() {
 }
 
 function scrollPage() {
-  try {
     setTimeout(() => {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        left: 0,
-        behavior: 'smooth',
-      });
-    }, 1000);
-  } catch (error) {
-    console.log(error);
-  }
+      document.body.scrollIntoView({behavior: 'smooth', block: 'end'});
+   }, 1000)
 }
+
